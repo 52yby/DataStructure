@@ -1,4 +1,4 @@
-package com.dyg.datestucture;
+package com.dyg.datestucture.linkedlist;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package com.dyg.datestucture;
+package com.dyg.datestucture.SparseArray;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

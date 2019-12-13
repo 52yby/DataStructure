@@ -1,4 +1,4 @@
-package com.dyg.datestucture;
+package com.dyg.datestucture.Queue;
 
 import java.util.Scanner;
 /*数据结构知识：环形队列可重用
