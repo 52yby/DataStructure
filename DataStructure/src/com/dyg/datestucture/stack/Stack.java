@@ -1,26 +1,27 @@
 package com.dyg.datestucture.stack;
 
 //java 实现栈
+//@author  dyg
 public class Stack {
 
 	private int top;
 	private int maxsize;
 	private int arr[];
-
+     //初始化栈
 	public Stack(int size) {
 		maxsize = size;
 		arr = new int[maxsize];
 		top = -1;
 	}
-
+     //判断栈是否满
 	public boolean isFull() {
 		return top == maxsize - 1;
 	}
-
+    //判断栈是否空
 	public boolean isEmpty() {
 		return top == -1;
 	}
-
+    //入栈
 	public void push(int data) {
 		if (isFull()) {
 			System.out.println("栈满！！");
@@ -29,7 +30,7 @@ public class Stack {
 		top = top + 1;
 		arr[top] = data;
 	}
-
+   //出栈
 	public int pop() {
 		if (isEmpty()) {
 			throw new RuntimeException("栈空！！");
@@ -38,7 +39,7 @@ public class Stack {
 		top = top - 1;
 		return value;
 	}
-
+    //查看栈
 	public void show() {
 		if (isEmpty()) {
 			System.out.println("栈空！！");
@@ -49,14 +50,14 @@ public class Stack {
 		}
 
 	}
-
+    //查看栈顶元素
 	public int head() {
 		if (isEmpty()) {
 			throw new RuntimeException("栈空！！");
 		}
 		return arr[top];
 	}
-
+    //判断运算符优先级
 	public int operrity(int p) {
 		if (p == '*' || p == '/') {
 			return 2;
@@ -66,11 +67,11 @@ public class Stack {
 		}
 		return 0;
 	}
-
+     //判断是否是运算符
 	public boolean isoper(char p) {
 		return p == '*' || p == '/' || p == '+' || p == '-';
 	}
-
+    //计算
 	public int cal(int num1, int num2, int p) {
 		int res = 0;
 		switch (p) {

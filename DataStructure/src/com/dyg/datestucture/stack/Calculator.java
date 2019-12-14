@@ -1,6 +1,9 @@
 package com.dyg.datestucture.stack;
 
-//使用栈实现计算器 (中缀表达式)
+/*java使用栈实现计算器 (中缀表达式)
+ *@author  dyg
+ * */
+
 public class Calculator {
 	public static void main(String[] args) {
 		System.out.println(Calculator.Cal("100*5+4/4"));
@@ -9,9 +12,9 @@ public class Calculator {
 	public static int Cal(String expression) {
 		Stack numstack = new Stack(1000);// 数字栈
 		Stack operstack = new Stack(100);// 符号栈
-		int num1 = 0;
-		int num2 = 0;
-		int index = 0;
+		int num1 = 0;//
+		int num2 = 0;//
+		int index = 0;//辅助指针用于遍历表达式
 		String knum = "";
 		while (true) {
 
