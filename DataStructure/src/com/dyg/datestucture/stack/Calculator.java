@@ -3,16 +3,18 @@ package com.dyg.datestucture.stack;
 //使用栈实现计算器 (中缀表达式)
 public class Calculator {
 	public static void main(String[] args) {
-	System.out.println(Calculator.Cal("10*5+4/4"));	}
-	public  static int Cal(String expression) {
+		System.out.println(Calculator.Cal("100*5+4/4"));
+	}
+
+	public static int Cal(String expression) {
 		Stack numstack = new Stack(1000);// 数字栈
 		Stack operstack = new Stack(100);// 符号栈
 		int num1 = 0;
 		int num2 = 0;
 		int index = 0;
-		String knum="";
+		String knum = "";
 		while (true) {
-			
+
 			char data = expression.substring(index, index + 1).charAt(0);
 			if (operstack.isoper(data)) {
 				if (operstack.isEmpty()) {
@@ -30,13 +32,13 @@ public class Calculator {
 					}
 				}
 			} else {
-				knum+=data;
-				if(index!=expression.length()-1){
-				if(operstack.isoper(expression.substring(index+1, index + 2).charAt(0))){
-					numstack.push(Integer.valueOf(knum.toString()));	
-					knum="";
-				}
-				}else{
+				knum += data;
+				if (index != expression.length() - 1) {
+					if (operstack.isoper(expression.substring(index + 1, index + 2).charAt(0))) {
+						numstack.push(Integer.valueOf(knum.toString()));
+						knum = "";
+					}
+				} else {
 					numstack.push(Integer.valueOf(knum.toString()));
 				}
 				//
@@ -58,4 +60,5 @@ public class Calculator {
 		}
 		return numstack.pop();
 	}
+
 }
