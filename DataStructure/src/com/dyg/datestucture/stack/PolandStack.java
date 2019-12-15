@@ -8,21 +8,83 @@ import java.util.Stack;
 //@author  dyg
 public class PolandStack {
 	public static void main(String[] args) {
-		String s = "30 4 + 5 * 6 -";
-		System.out.println(cal(Polandlist(s)));
-	}
-	public boolean isoper(char p) {
-		return p == '*' || p == '/' || p == '+' || p == '-';
-	}
-	public static List<String> Polandlist(String expression) {
-		String  strarr[]=expression.split(" ");
-		List<String> list = new ArrayList<String>();
-		for (String c : strarr) {
-			list.add(c);
-		}
-		return list;
+		String s = "(10+1)*1  +5/5-1";
+		s=s.replace(" ", "");
+		System.out.println(stringtolist(s));
+		System.out.println(midtoend(stringtolist(s)));
+		System.out.println(cal(midtoend(stringtolist(s))));
+
 	}
 
+	//字符串转换成list便于使用
+	public static List<String> stringtolist(String expression) {
+		List<String> l = new ArrayList<>();
+		int i = 0;
+		String num;
+		do {
+
+			if (expression.charAt(i) < 48 || expression.charAt(i) > 57) {
+				l.add(String.valueOf(expression.charAt(i)));
+				i++;
+			} else {
+				num = "";
+				while (i < expression.length() && expression.charAt(i) >= 48 && expression.charAt(i) <= 57) {
+					num += expression.charAt(i);
+					i++;
+				}
+				l.add(num);
+			}
+
+		} while (i < expression.length());
+		return l;
+
+	}
+	//中缀转换成后缀
+	public static List<String> midtoend(List<String> ls) {
+		List<String> l = new ArrayList<>();
+
+		Stack<String> stack = new Stack<>();
+
+		for (String item : ls) {
+			if (item.matches("\\d+")) {
+				l.add(item);
+			}
+			else if ("(".equals(item)) {
+				stack.add(item);
+			} else if (")".equals(item)) {
+				while (!stack.peek().equals("(")) {
+					l.add(stack.pop());
+				}
+				stack.pop();
+			} 
+			else   {
+				 while (stack.size() != 0&&operrity(stack.peek()) >= operrity(item)) {
+						l.add(stack.pop());
+						//stack.push(item);
+					}
+						stack.push(item);
+					
+				}
+		}
+		while(stack.size()!=0){
+			l.add(stack.pop());
+		}
+		
+		return l;
+
+	}
+
+	// 判断运算符优先级
+	public static int operrity(String p) {
+		if ("*".equals(p) || "/".equals(p)) {
+			return 2;
+		}
+		if ("+".equals(p) || "-".equals(p)) {
+			return 1;
+		}
+		return 0;
+	}
+    //对后缀表达式进行计算
 	public static int cal(List<String> l) {
 		Stack<String> stack = new Stack<String>();
 		for (String item : l) {

@@ -69,7 +69,7 @@ public class Stack {
 	}
      //判断是否是运算符
 	public boolean isoper(char p) {
-		return p == '*' || p == '/' || p == '+' || p == '-';
+		return p == '*' || p == '/' || p == '+' || p == '-'||p == '('||p == ')'  ;
 	}
     //计算
 	public int cal(int num1, int num2, int p) {

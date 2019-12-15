@@ -6,7 +6,7 @@ package com.dyg.datestucture.stack;
 
 public class Calculator {
 	public static void main(String[] args) {
-		System.out.println(Calculator.Cal("100*5+4/4"));
+		System.out.println(Calculator.Cal("1+((2+2)/4)*5+4/4"));
 	}
 
 	public static int Cal(String expression) {
@@ -20,9 +20,18 @@ public class Calculator {
 
 			char data = expression.substring(index, index + 1).charAt(0);
 			if (operstack.isoper(data)) {
-				if (operstack.isEmpty()) {
+				if (operstack.isEmpty()||data=='(' ) {
 					operstack.push(data);
 				} else {
+					if(data==')'){
+						num1 = numstack.pop();
+						num2 = numstack.pop();
+						int oper = operstack.pop();
+						int res = operstack.cal(num1, num2, oper);
+						numstack.push(res);
+						operstack.pop();
+					}else{
+					
 					if (operstack.operrity(operstack.head()) > operstack.operrity(data)) {
 						num1 = numstack.pop();
 						num2 = numstack.pop();
@@ -32,7 +41,7 @@ public class Calculator {
 						operstack.push(data);
 					} else {
 						operstack.push(data);
-					}
+					}}
 				}
 			} else {
 				knum += data;
