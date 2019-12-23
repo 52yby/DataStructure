@@ -21,6 +21,9 @@ public class EmpLinkedlist {
 			}
 			cur = cur.getNext();
 		}
+		if (cur.getId() == emp.getId()) {
+			falg = true;
+		}
 		if (falg) {
 			cur.setName(emp.getName());
 		} else {
@@ -57,11 +60,11 @@ public class EmpLinkedlist {
 	public void list(int i) {
 		if (head == null) {
 			System.out.println("第" + i + "条链表为空");
+			return;
 		}
-		
+		System.out.println("第" + i + "条链表数据是");
 		Employee cur = head;
 		while (cur != null) {
-			System.out.println("第" + i + "条链表数据是");
 			System.out.println("工号" + cur.getId() + "姓名" + cur.getName());
 			cur = cur.getNext();
 		}
