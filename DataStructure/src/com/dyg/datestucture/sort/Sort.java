@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-/*Java排序    冒泡，选择，插入，希尔，快速，归并，基数
+/*Java排序    冒泡，选择，插入，希尔，快速，归并，基数,堆排序
 @author  dyg*/
 public class Sort {
 
@@ -14,10 +14,11 @@ public class Sort {
 		 * int arr[] = { 12, 22, 41, 54, 5, -7 }; insertsort(arr);
 		 * System.out.println(Arrays.toString(arr));
 		 */
-		int arr[] = { 8, 9, 1, -71, 752, 453, 5, 114, -688, 0 };
+	//	int arr[] = { 8, 9, 1, -71, 752, 453, 5, 114, -688, 0 };
 		/* shellsort2(arr); */
-		int[] temp = new int[arr.length];
-		BukcetSort(arr);
+		//int[] temp = new int[arr.length];
+		int arr[] ={4,6,8,5,9};
+		TreeSort(arr);
 		System.out.println(Arrays.toString(arr));
 
 	}
@@ -197,7 +198,8 @@ public class Sort {
 		}
 
 	}
-   //基数排序
+
+	// 基数排序
 	public static void BukcetSort(int arr[]) {
 		int max = arr[0];
 		for (int i = 1; i < arr.length; i++) {
@@ -211,11 +213,10 @@ public class Sort {
 			int[] bukcetelement = new int[19];
 			for (int k = 0; k < arr.length; k++) {
 				int value = (arr[k] / n) % 10;
-				if (value >=0) {
+				if (value >= 0) {
 					value += 9;
-				}
-				else {
-					value = Math.abs(value)-1;
+				} else {
+					value = Math.abs(value) - 1;
 				}
 				bukcet[value][bukcetelement[value]] = arr[k];
 				bukcetelement[value]++;
@@ -228,10 +229,38 @@ public class Sort {
 						bukcetelement[l] = 0;
 					}
 				}
-
 			}
 		}
 
+	}
+	
+	public static  void  TreeSort(int arr[]){
+		for(int i=arr.length/2-1;i>=0;i--){
+			justTree(arr, i, arr.length);
+		}
+		//System.out.println(Arrays.toString(arr));
+		
+		for(int  j=arr.length-1;j>=0;j--){
+			int temp=arr[0];
+			arr[0]=arr[j];
+			arr[j]=temp;
+			justTree(arr, 0,j);
+		}
+	}
+	public static void  justTree(int arr[],int i,int length){
+		int  temp=arr[i];
+		for(int k=i*2+1;k<length;k=k*2+1){
+			if(k+1<length&&arr[k]<arr[k+1]){
+				k++;
+			}
+			if(arr[k]>temp){
+				arr[i]=arr[k];
+				i=k;
+			}else{break;}
+		
+		}
+		arr[i]=temp;
+		
 	}
 
 }
