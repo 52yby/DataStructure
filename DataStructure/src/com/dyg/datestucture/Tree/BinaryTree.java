@@ -1,5 +1,7 @@
 package com.dyg.datestucture.Tree;
-
+/*@auhtor dyg
+ * java 实现二叉树  遍历,查找删除，线索化。
+*/
 public class BinaryTree {
 	LinkedNode root;
 	private int[] arr;
